@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대한민국 1등 인테리어 - 부자인테리어</title>
+    <!-- 나눔고딕 웹폰트 로드 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #3B2F2F; /* 짙은 갈색 */
+            --primary-light: #F9F6F0; /* 따뜻한 미백색/아이보리 */
+            --accent-brown: #5C4A4A; /* 중간 갈색 */
+            --text-main: #2C2C2C;
+            --text-muted: #666666;
+            --white: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+            color: var(--text-main);
+            background-color: var(--primary-light);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar (책갈피 메뉴) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(59, 47, 47, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-menu li a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Sections Common */
+        section {
+            padding: 100px 20px 80px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            text-align: center;
+            max-width: 700px;
+        }
+
+        /* 1. Hero Section (메인 비주얼) */
+        #home {
+            background: linear-gradient(rgba(59, 47, 47, 0.75), rgba(59, 47, 47, 0.75)), url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-dark);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        /* 2. About Section (소개) */
+        #about {
+            background-color: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .about-card {
+            background-color: var(--primary-light);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            border-top: 4px solid var(--primary-dark);
+            transition: transform 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        /* 3. Services Section (서비스) */
+        #services {
+            background-color: var(--primary-light);
+        }
+
+        .service-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .service-box {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(59, 47, 47, 0.05);
+        }
+
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        /* 4. Portfolio Section (포트폴리오) */
+        #portfolio {
+            background-color: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(59, 47, 47, 0.9));
+            color: var(--white);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* 5. Contact Section (문의하기) */
+        #contact {
+            background-color: var(--primary-dark);
+            color: var(--white);
+        }
+
+        #contact .section-title {
+            color: var(--white);
+        }
+
+        #contact .section-desc {
+            color: #D3C5C5;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 5px;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--white);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--white);
+            color: var(--primary-dark);
+            border: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #261E1E;
+            color: #A69B9B;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 모바일 반응형 메뉴 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* 실제 서비스 시 모바일 토글 메뉴 구현 가능 */
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 내비게이션 바 (책갈피 기능) -->
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo">부자인테리어</a>
+            <ul class="nav-menu">
+                <li><a href="#home">홈</a></li>
+                <li><a href="#about">브랜드 소개</a></li>
+                <li><a href="#services">제공 서비스</a></li>
+                <li><a href="#portfolio">시공 사례</a></li>
+                <li><a href="#contact">무료 견적문의</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 1. 홈 (Hero Section) -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>공간의 가치를 높이는 대한민국 1등<br>부자인테리어</h1>
+            <p>당신의 라이프스타일에 맞춘 프리미엄 맞춤형 공간 솔루션을 경험하세요.</p>
+            <a href="#contact" class="cta-btn">무료 견적 신청하기</a>
+        </div>
+    </section>
+
+    <!-- 2. 브랜드 소개 (About Section) -->
+    <section id="about">
+        <h2 class="section-title">Why 부자인테리어?</h2>
+        <p class="section-desc">대한민국 최대 규모의 인테리어 네트워크와 신뢰할 수 있는 전문성을 바탕으로 최고의 결과를 약속드립니다.</p>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>01. 투명한 견적 시스템</h3>
+                <p>거품 없는 정직한 자재비와 시공 내역 공개로 추가 비용 없는 투명한 공사를 진행합니다.</p>
+            </div>
+            <div class="about-card">
+                <h3>02. 분야별 전문 디자이너</h3>
+                <p>주거, 상업공간 전문 디자이너가 고객의 취향을 반영한 1:1 맞춤형 3D 설계를 제공합니다.</p>
+            </div>
+            <div class="about-card">
+                <h3>03. 확실한 사후 A/S</h3>
+                <p>시공 완료 후에도 업계 최고 수준의 무상 보증 서비스로 안심하고 거주하실 수 있습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 제공 서비스 (Services Section) -->
+    <section id="services">
+        <h2 class="section-title">제공 서비스</h2>
+        <p class="section-desc">고객님의 주거 및 상업 공간에 최적화된 맞춤형 인테리어 솔루션을 제공합니다.</p>
+        <div class="service-container">
+            <div class="service-box">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="service-content">
+                    <h3>주거 공간 인테리어</h3>
+                    <p>아파트, 빌라, 단독주택 등 가족의 일상이 행복해지는 감성적이고 실용적인 주거 공간을 완성합니다.</p>
+                </div>
+            </div>
+            <div class="service-box">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="service-content">
+                    <h3>상업 공간 인테리어</h3>
+                    <p>카페, 오피스, 매장 등 브랜드의 가치를 높이고 고객을 사로잡는 트렌디한 상공간 시공을 진행합니다.</p>
+                </div>
+            </div>
+            <div class="service-box">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="service-content">
+                    <h3>부분 리모델링</h3>
+                    <p>욕실, 주방, 조명, 도어 등 필요한 부분만 합리적인 가격으로 교체하여 분위기를 전환합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 시공 사례 (Portfolio Section) -->
+    <section id="portfolio">
+        <h2 class="section-title">주요 시공 사례</h2>
+        <p class="section-desc">부자인테리어가 완성한 감각적이고 다채로운 공간 디자인을 확인해 보세요.</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="모던 우드 하우스">
+                <div class="portfolio-overlay">
+                    <h3>강남구 34평 아파트</h3>
+                    <p>모던 우드 내추럴 스타일</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" alt="미니멀 화이트 인테리어">
+                <div class="portfolio-overlay">
+                    <h3>서초구 주상복합</h3>
+                    <p>미니멀 화이트 톤 인테리어</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="프리미엄 오피스">
+                <div class="portfolio-overlay">
+                    <h3>판교 테크노 플렉스</h3>
+                    <p>프리미엄 감성 오피스 공간</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 문의하기 (Contact Section) -->
+    <section id="contact">
+        <h2 class="section-title">무료 견적 문의</h2>
+        <p class="section-desc">상담 신청을 남겨주시면 담당 전문 디자이너가 신속하게 연락을 드립니다.</p>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">이름 / 연락처</label>
+                <input type="text" id="name" placeholder="홍길동 / 010-0000-0000" required>
+            </div>
+            <div class="form-group">
+                <label for="space">공간 유형</label>
+                <input type="text" id="space" placeholder="예: 아파트 32평 / 상가 카페 등" required>
+            </div>
+            <div class="form-group">
+                <label for="message">문의 내용</label>
+                <textarea id="message" rows="4" placeholder="원하시는 공사 일정과 대략적인 스타일을 적어주세요." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">무료 상담 신청하기</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 부자인테리어 (Buji Interior). All Rights Reserved.</p>
+    </footer>
+
+    <!-- 부드러운 움직임 및 인터랙션 JS -->
+    <script>
+        // 견적 신청 폼 제출 핸들러 (움직임 효과 및 피드백)
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('무료 상담 신청이 성공적으로 접수되었습니다. 담당자가 곧 연락드리겠습니다!');
+            event.target.reset();
+        }
+
+        // 스크롤 시 내비게이션 바 그림자 변화 효과 (부드러운 움직임 JS)
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(59, 47, 47, 0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(59, 47, 47, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
